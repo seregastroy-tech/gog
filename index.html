@@ -105,7 +105,7 @@ section{padding:clamp(56px,8vw,104px) 0}
 .kb b{color:var(--teal);font-weight:700}
 .snack{background:var(--paper)}
 .bk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-@media(max-width:900px){.bk{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.bk{grid-template-columns:minmax(0,1fr)}.bkc{flex-direction:row}.bkc .ph{width:42%;aspect-ratio:auto;flex:none}}@media(max-width:560px){.bkc{flex-direction:column}.bkc .ph{width:100%;aspect-ratio:4/3}}
 .bkc{background:var(--cream);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
 .bkc .ph{aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;border:0;padding:0;background:var(--greige);display:block;width:100%}
 .bkc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.bkc .ph:hover img{transform:scale(1.04)}
@@ -366,7 +366,7 @@ const PLACES=[
 
 const tabs=document.getElementById('tabs'),panel=document.getElementById('panel'),cats=Object.keys(MENU);
 const fm=v=>String(v).replace('.',',');
-function kb(n){const x=KB[n];if(!x)return '';const j=a=>a.map(fm).join(' / ');return '<div class="kb"><span><b>'+j(x[0])+'</b> ккал</span><span>Б '+j(x[1])+'</span><span>Ж '+j(x[2])+'</span><span>У '+j(x[3])+'</span></div>'}
+function kb(n){const x=KB[n];if(!x)return '';if(Math.max(...x[0])===0)return '<div class="kb"><span><b>0</b> ккал</span></div>';const j=a=>a.map(fm).join(' / ');return '<div class="kb"><span><b>'+j(x[0])+'</b> ккал</span><span>Б '+j(x[1])+'</span><span>Ж '+j(x[2])+'</span><span>У '+j(x[3])+'</span></div>'}
 function item([n,d,p,t,ph]){
  const head='<div class="row"><span class="name">'+n+(t?'<span class="tag '+TAG[t][1]+'">'+TAG[t][0]+'</span>':'')+'</span><span class="dots"></span><span class="price">'+p+' ₽</span></div>'+(d?'<div class="desc">'+d+'</div>':'')+kb(n);
  return ph?'<div class="item"><button class="thumb" data-src="'+P(ph)+'" data-cap="'+n+'" aria-label="Фото: '+n+'"><img src="'+P(ph)+'" alt="" loading="lazy"></button><div>'+head+'</div></div>':'<div class="item np"><div>'+head+'</div></div>';
