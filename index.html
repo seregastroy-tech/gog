@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гёг — кофейни</title>
+<meta name="description" content="Гёг — три кофейни в центре Москвы: Яузская, Бакунинская, Машкова. Авторский кофе, сезонные чаи, свечи ручной работы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#446C6E;--deep:#2C4748;--night:#213738;--greige:#C3BEB6;--cream:#F3E9DC;--paper:#FBF6EF;--sun:#D9A066;--rust:#A3452A;
+--ink:#22393A;--muted:#5B6B6A;--line:rgba(34,57,58,.16);--slab:'Roboto Slab',Georgia,serif;--sans:'Manrope',system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{background:var(--cream);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(4vw,18px)}
+h1,h2,h3{font-family:var(--slab);font-weight:700;line-height:1.05;text-wrap:balance}
+h2{font-size:clamp(34px,5vw,52px)}
+.lead{font-size:17px;color:var(--muted);max-width:560px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid currentColor;transition:.2s;white-space:nowrap}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:var(--night)}
+.btn.sun:hover{background:#E8B47E;border-color:#E8B47E}
+.btn.line:hover{background:var(--cream);color:var(--deep);border-color:var(--cream)}
+.btn.dark{background:var(--deep);border-color:var(--deep);color:var(--cream)}
+.btn.dark:hover{background:var(--teal);border-color:var(--teal)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+/* header */
+header{position:sticky;top:0;z-index:30;background:rgba(44,71,72,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream)}
+.nav{display:flex;align-items:center;gap:22px;height:68px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo svg{height:44px;width:auto}
+.links{display:flex;gap:26px;margin-left:auto;font-size:14px;font-weight:600}
+.links a{text-decoration:none;opacity:.85}.links a:hover{opacity:1}
+.hb{display:flex;gap:8px}
+.hb .btn{min-height:38px;padding:0 16px;font-size:13px}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--cream)}
+.burger span{display:block;width:22px;height:2px;background:currentColor;margin:5px auto;border-radius:2px}
+@media(max-width:900px){
+ .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--deep);display:none;margin:0}
+ .links.open{display:flex}.links a{padding:15px max(4vw,18px);border-top:1px solid rgba(243,233,220,.12)}
+ .burger{display:block}.hb{margin-left:auto}
+}
+@media(max-width:480px){.hb .route{display:none}.logo svg{height:38px}}
+
+/* hero */
+.hero{background:var(--teal);color:var(--cream);position:relative;overflow:hidden;padding:clamp(36px,6vw,80px) 0 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,4vw,56px);align-items:end}
+.hero h1{font-size:clamp(46px,7.4vw,96px);letter-spacing:-.01em;line-height:.98}
+.hero h1 small{display:block;font-family:var(--sans);font-weight:600;font-size:clamp(17px,1.6vw,20px);letter-spacing:0;margin-top:18px;color:var(--greige);line-height:1.4}
+.hero .lead{color:rgba(243,233,220,.82);margin:22px 0 28px}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap;padding-bottom:clamp(40px,6vw,86px)}
+.spots{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:13px;font-weight:600;color:var(--greige)}
+.spots span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sun);margin-right:8px;vertical-align:1px}
+.scene{position:relative;height:clamp(340px,44vw,560px)}
+.scene .sunc{position:absolute;left:50%;bottom:0;width:118%;aspect-ratio:2/1;transform:translateX(-50%);background:var(--greige);border-radius:999px 999px 0 0;opacity:.35}
+.arches{position:absolute;inset:auto 0 0 0;display:flex;justify-content:center;align-items:flex-end;gap:clamp(10px,1.6vw,20px);height:100%}
+.arch{width:30%;border-radius:999px 999px 0 0;overflow:hidden;box-shadow:0 -10px 40px rgba(20,35,36,.25);animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.arch img{width:100%;height:100%;object-fit:cover}
+.arch:nth-child(1){height:62%;animation-delay:.15s}.arch:nth-child(2){height:88%}.arch:nth-child(3){height:72%;animation-delay:.3s}
+@keyframes rise{from{transform:translateY(40%)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.arch{animation:none}html{scroll-behavior:auto}}
+.horizon{height:16px;background:var(--deep);position:relative;z-index:2}
+@media(max-width:760px){.hero-grid{grid-template-columns:minmax(0,1fr)}.hero .btns{padding-bottom:6px}.scene{height:300px}}
+
+section{padding:clamp(56px,8vw,104px) 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap;margin-bottom:34px}
+.head .lead{max-width:420px}
+
+/* about */
+.about{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:center}
+.about p{color:var(--muted);margin-top:16px;font-size:17px}
+.about .mark{width:min(100%,420px);margin:0 auto}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
+.facts div{border-top:2px solid var(--teal);padding-top:10px;font-size:14px;color:var(--muted)}
+.facts b{display:block;font-family:var(--slab);font-size:30px;color:var(--teal);line-height:1.1}
+@media(max-width:760px){.about-grid{grid-template-columns:minmax(0,1fr)}.about .mark{max-width:300px}}
+
+/* menu */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tab{min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid var(--teal);background:none;color:var(--teal);font:700 14px var(--sans);cursor:pointer}
+.tab.on{background:var(--deep);border-color:var(--deep);color:var(--cream)}
+.vols{font-size:13px;color:var(--muted);margin:16px 0 4px}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}
+@media(max-width:760px){.items{grid-template-columns:minmax(0,1fr)}}
+.item{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.item.np{grid-template-columns:minmax(0,1fr)}
+.thumb{width:72px;height:72px;border-radius:36px 36px 8px 8px;overflow:hidden;border:0;padding:0;cursor:zoom-in;background:var(--greige)}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.thumb:hover img{transform:scale(1.07)}
+.row{display:flex;align-items:baseline;gap:10px}
+.name{font-weight:700;font-size:16px}
+.dots{flex:1;border-bottom:1px dotted rgba(34,57,58,.35);transform:translateY(-4px)}
+.price{font-family:var(--slab);font-weight:600;color:var(--rust);white-space:nowrap}
+.desc{font-size:14px;color:var(--muted);margin-top:2px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px;margin-left:8px;vertical-align:2px;background:var(--sun);color:var(--night)}
+.tag.hit{background:var(--teal);color:var(--cream)}
+.tag.bar{background:none;border:1px solid var(--rust);color:var(--rust)}
+.milk{margin-top:22px;background:var(--paper);border-radius:14px;padding:16px 20px;font-size:14px;color:var(--muted)}
+.milk b{color:var(--ink)}
+.kb{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:5px;font-size:12px;color:var(--muted)}
+.kb b{color:var(--teal);font-weight:700}
+.snack{background:var(--paper)}
+.bk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media(max-width:900px){.bk{grid-template-columns:minmax(0,1fr)}}
+.bkc{background:var(--cream);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.bkc .ph{aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;border:0;padding:0;background:var(--greige);display:block;width:100%}
+.bkc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.bkc .ph:hover img{transform:scale(1.04)}
+.bkc .b{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.bkc h3{font-size:24px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.bkc h3 span{font-size:20px;color:var(--rust);white-space:nowrap}
+.bkc p{color:var(--muted);font-size:15px}
+.bkc ul{list-style:none;font-size:15px;color:var(--muted)}
+.bkc li:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sun);margin-right:8px;vertical-align:2px}
+.pastry{margin-top:clamp(34px,5vw,56px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:clamp(24px,4vw,50px);align-items:center}
+.pastry h3{font-size:clamp(28px,3.6vw,40px)}
+.pastry .rng{font-family:var(--slab);font-size:clamp(30px,4vw,44px);color:var(--rust);margin:10px 0 12px;white-space:nowrap}
+.pastry p{color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pgrid button{border:0;padding:0;background:var(--greige);border-radius:14px;overflow:hidden;cursor:zoom-in;position:relative;aspect-ratio:3/4}
+.pgrid img{width:100%;height:100%;object-fit:cover}
+.pgrid span{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(251,246,239,.92);color:var(--ink);font-size:12px;font-weight:700;padding:4px 8px;border-radius:8px;text-align:left}
+@media(max-width:760px){.pastry{grid-template-columns:minmax(0,1fr)}.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.legend{margin-top:18px;font-size:13px;color:var(--muted)}
+.legend .tag{margin:0 6px 0 0}
+
+/* candles */
+.candles{background:var(--deep);color:var(--cream)}
+.candles .lead{color:rgba(243,233,220,.75)}
+.pile{height:clamp(200px,30vw,380px);border-radius:200px 200px 16px 16px;overflow:hidden;margin-bottom:22px}
+.pile img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.card{background:var(--cream);color:var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.card .b{padding:14px 14px 16px;display:flex;flex-direction:column;flex:1}
+.fmt{font-size:12px;font-weight:600;color:var(--teal)}
+.card h3{font-size:19px;margin:6px 0 4px}
+.card p{font-size:13px;color:var(--muted);flex:1}
+.card .pr{font-family:var(--slab);font-weight:700;font-size:20px;color:var(--rust);margin-top:8px}
+.toys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(26px,5vw,60px);align-items:center;margin-top:clamp(50px,7vw,90px)}
+.toys h3{font-size:clamp(30px,4vw,44px)}
+.toys p{color:rgba(243,233,220,.78);margin:16px 0 22px;max-width:440px}
+.tp{display:flex;align-items:baseline;gap:14px;border-top:1.5px solid rgba(243,233,220,.35);padding-top:12px;max-width:440px}
+.tp span{font-size:14px;color:var(--greige)}.tp b{margin-left:auto;font-family:var(--slab);font-size:40px;color:var(--sun)}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tgrid img{aspect-ratio:1/1;object-fit:cover;width:100%;border-radius:12px}
+@media(max-width:760px){.toys{grid-template-columns:minmax(0,1fr)}}
+
+/* places */
+.places{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media(max-width:900px){.places{grid-template-columns:minmax(0,1fr)}}
+.place{background:var(--paper);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.place .top{background:var(--teal);color:var(--cream);padding:22px 22px 0;position:relative;height:150px;overflow:hidden}
+.place .top h3{font-size:26px;position:relative;z-index:2}
+.place .top .m{font-size:14px;color:var(--greige);position:relative;z-index:2;margin-top:4px}
+.place .top{height:132px}.place .top i{position:absolute;right:22px;bottom:0;width:120px;height:60px;border-radius:60px 60px 0 0;background:var(--sun)}
+.place .top .new{position:absolute;right:16px;top:18px;z-index:2;font-size:11px;font-weight:700;background:var(--cream);color:var(--deep);padding:3px 10px;border-radius:99px}
+.place .bd{padding:20px 22px 22px;display:grid;gap:14px;flex:1}
+.place dt{font-size:12px;font-weight:700;color:var(--teal)}
+.place dd{font-size:16px}
+.place dd a{text-decoration:none;font-weight:700}
+.place .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.place .acts .btn{min-height:42px;font-size:14px;padding:0 18px}
+.place .btn.ol{color:var(--deep)}.place .btn.ol:hover{background:var(--deep);color:var(--cream)}
+
+/* loyalty */
+.loyal{padding-top:0}
+.loyal-in{background:var(--sun);border-radius:28px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px;align-items:center;position:relative;overflow:hidden;color:var(--night)}
+.loyal-in p{margin-top:12px;max-width:520px;color:#4A3A26}
+.loyal .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;position:relative;z-index:2}
+.loyal .btn.ol{color:var(--night)}.loyal .btn.ol:hover{background:var(--night);color:var(--sun)}
+.loyal-in svg{position:absolute;right:-60px;bottom:-30px;width:360px;opacity:.16;pointer-events:none}
+@media(max-width:760px){.loyal-in{grid-template-columns:minmax(0,1fr)}.loyal .acts{justify-content:flex-start}}
+
+footer{background:var(--night);color:rgba(243,233,220,.6);font-size:14px;padding:34px 0}
+.foot{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.foot svg{height:54px;width:auto}
+.foot a{text-decoration:none;color:var(--cream)}
+
+.lb{position:fixed;inset:0;background:rgba(20,33,34,.88);display:none;align-items:center;justify-content:center;z-index:60;padding:20px}
+.lb.on{display:flex}
+.lb figure{max-width:min(92vw,620px);text-align:center;color:var(--cream)}
+.lb img{max-height:78vh;width:auto;margin:0 auto;border-radius:18px}
+.lb figcaption{margin-top:12px;font-family:var(--slab);font-size:20px}
+.lb button{position:absolute;top:16px;right:16px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(243,233,220,.4);background:rgba(243,233,220,.1);color:var(--cream);font-size:28px;cursor:pointer}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <path id="p-sun" d="M 1838.066406 763.742188 C 1723.402344 355.847656 1395.996094 61.453125 1009.992188 61.453125 C 623.988281 61.453125 296.582031 355.847656 181.917969 763.742188 Z M 1838.066406 763.742188 "/>
+  <path id="p-bird" d="M 2084.734375 757.472656 L 2038.132812 740.429688 C 2038.132812 740.429688 2031.046875 737.851562 2025.257812 734.515625 C 1916.707031 675.804688 1945.589844 584.667969 1793.394531 573.597656 C 1683.210938 565.582031 1653.929688 688.535156 1575.742188 693.214844 C 1553.792969 694.226562 1533.671875 693.246094 1533.671875 693.246094 C 1499.265625 690.03125 1445.683594 675.324219 1413.917969 618.367188 C 1410.019531 611.375 1388.164062 569.523438 1379.324219 555.679688 C 1248.054688 350.15625 923.53125 23.574219 181.917969 6.878906 C 864.253906 349.363281 437.972656 483.042969 863.332031 693.246094 L 48.0625 693.246094 C 25.253906 693.246094 6.761719 711.738281 6.761719 734.546875 C 6.761719 757.359375 25.253906 775.847656 48.0625 775.847656 L 1904.914062 775.847656 C 1904.917969 775.847656 1904.917969 775.847656 1904.917969 775.847656 L 2081.480469 775.847656 C 2092.074219 775.847656 2094.683594 761.109375 2084.734375 757.472656 "/>
+  <path id="p-let" d="M 205.117188 1580.933594 L 205.117188 1547.796875 L 273.160156 1526.148438 C 278.164062 1524.675781 282.214844 1522.25 285.308594 1518.855469 C 288.398438 1515.476562 289.949219 1510.542969 289.949219 1504.058594 L 289.949219 1023.367188 C 289.949219 1017.183594 288.328125 1012.398438 285.085938 1009.011719 C 281.84375 1005.628906 277.867188 1003.339844 273.160156 1002.160156 L 205.117188 979.628906 L 205.117188 947.375 L 698.621094 947.375 L 698.621094 1121.890625 L 646.488281 1121.890625 L 621.746094 1018.507812 C 620.566406 1013.203125 618.355469 1009.160156 615.121094 1006.359375 C 611.878906 1003.566406 607.753906 1002.160156 602.746094 1002.160156 L 382.726562 1002.160156 L 382.726562 1504.058594 C 382.726562 1510.542969 384.417969 1515.476562 387.808594 1518.855469 C 391.191406 1522.25 395.242188 1524.675781 399.957031 1526.148438 L 473.296875 1547.796875 L 473.296875 1580.933594 Z M 205.117188 1580.933594  M 1137.328125 886.449219 C 1122.894531 886.449219 1110.078125 881.886719 1098.890625 872.753906 C 1087.691406 863.628906 1082.101562 851.105469 1082.101562 835.203125 C 1082.101562 818.121094 1087.691406 805.011719 1098.890625 795.882812 C 1110.078125 786.753906 1122.894531 782.183594 1137.328125 782.183594 C 1154.117188 782.183594 1167.882812 786.457031 1178.636719 795 C 1189.386719 803.542969 1194.765625 815.914062 1194.765625 832.105469 C 1194.765625 848.894531 1189.242188 862.152344 1178.195312 871.871094 C 1167.152344 881.589844 1153.523438 886.449219 1137.328125 886.449219 M 938.957031 886.449219 C 924.519531 886.449219 911.707031 881.886719 900.519531 872.753906 C 889.320312 863.628906 883.726562 851.105469 883.726562 835.203125 C 883.726562 818.121094 889.320312 805.011719 900.519531 795.882812 C 911.707031 786.753906 924.519531 782.183594 938.957031 782.183594 C 955.746094 782.183594 969.511719 786.457031 980.269531 795 C 991.011719 803.542969 996.390625 815.914062 996.390625 832.105469 C 996.390625 848.894531 990.867188 862.152344 979.820312 871.871094 C 968.777344 881.589844 955.148438 886.449219 938.957031 886.449219 M 770.621094 1580.933594 L 770.621094 1547.796875 L 838.664062 1526.148438 C 843.667969 1524.675781 847.722656 1522.25 850.816406 1518.859375 C 853.90625 1515.476562 855.453125 1510.542969 855.453125 1504.058594 L 855.453125 1023.367188 C 855.453125 1017.183594 853.832031 1012.476562 850.589844 1009.230469 C 847.347656 1005.992188 843.375 1003.636719 838.664062 1002.160156 L 770.621094 979.628906 L 770.621094 947.375 L 1262.359375 947.375 L 1262.359375 1104.660156 L 1210.230469 1104.660156 L 1193 1017.625 C 1191.820312 1012.320312 1189.605469 1008.277344 1186.367188 1005.476562 C 1183.125 1002.683594 1179.003906 1001.277344 1174 1001.277344 L 948.230469 1001.277344 L 948.230469 1224.390625 L 1083.867188 1224.390625 C 1089.757812 1224.390625 1094.101562 1223.144531 1096.902344 1220.636719 C 1099.699219 1218.140625 1101.6875 1214.085938 1102.867188 1208.484375 L 1118.773438 1138.683594 L 1161.1875 1138.683594 L 1161.1875 1364.445312 L 1118.773438 1364.445312 L 1102.867188 1295.085938 C 1101.6875 1289.492188 1099.699219 1285.292969 1096.902344 1282.488281 C 1094.101562 1279.691406 1089.757812 1278.292969 1083.867188 1278.292969 L 948.230469 1278.292969 L 948.230469 1527.03125 L 1208.457031 1527.03125 C 1212.878906 1527.03125 1216.777344 1525.5625 1220.171875 1522.613281 C 1223.546875 1519.671875 1225.6875 1515.546875 1226.574219 1510.242188 L 1244.246094 1413.046875 L 1295.9375 1413.046875 L 1295.9375 1580.933594 Z M 770.621094 1580.933594  M 1397.109375 1580.933594 L 1397.109375 1547.796875 L 1465.152344 1526.148438 C 1470.15625 1524.675781 1474.207031 1522.25 1477.300781 1518.855469 C 1480.390625 1515.476562 1481.941406 1510.542969 1481.941406 1504.058594 L 1481.941406 1023.367188 C 1481.941406 1017.183594 1480.320312 1012.398438 1477.078125 1009.011719 C 1473.835938 1005.628906 1469.859375 1003.339844 1465.152344 1002.160156 L 1397.109375 979.628906 L 1397.109375 947.375 L 1890.613281 947.375 L 1890.613281 1121.890625 L 1838.480469 1121.890625 L 1813.738281 1018.507812 C 1812.558594 1013.203125 1810.347656 1009.160156 1807.109375 1006.359375 C 1803.871094 1003.566406 1799.746094 1002.160156 1794.738281 1002.160156 L 1574.71875 1002.160156 L 1574.71875 1504.058594 C 1574.71875 1510.542969 1576.410156 1515.476562 1579.800781 1518.855469 C 1583.183594 1522.25 1587.234375 1524.675781 1591.949219 1526.148438 L 1665.289062 1547.796875 L 1665.289062 1580.933594 Z M 1397.109375 1580.933594 "/>
+ </defs>
+</svg>
+
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#top" aria-label="Гёг — на главную"><svg viewBox="0 0 2098 1588"><use href="#p-sun" fill="#C3BEB6" opacity=".55"/><use href="#p-bird" fill="#F3E9DC"/><use href="#p-let" fill="#F3E9DC"/></svg></a>
+  <nav class="links" id="links"><a href="#about">О нас</a><a href="#menu">Меню</a><a href="#snack">Перекусить</a><a href="#candles">Свечи</a><a href="#places">Адреса</a><a href="#loyalty">Карта гостя</a></nav>
+  <div class="hb"><a class="btn sun" href="https://bp971.quickresto.ru/cpr/registration">Карта гостя</a><a class="btn line route" href="#places">Адреса</a></div>
+  <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<section class="hero" id="top">
+ <div class="wrap hero-grid">
+  <div>
+   <h1>Кофейни Гёг<small>Авторский кофе и согревающие чаи в трёх местах Москвы</small></h1>
+   <p class="lead">Сезонные авторские напитки, классика на хорошем зерне, листовые чаи и свечи ручной работы. Заходите утром за капучино или вечером посидеть с книгой.</p>
+   <div class="spots"><span>Яузская, 8с2</span><span>Машкова, 21</span><span>Бакунинская, 8</span></div>
+   <div class="btns" style="margin-top:28px"><a class="btn sun" href="#menu">Смотреть меню</a><a class="btn line" href="#places">Как нас найти</a></div>
+  </div>
+  <div class="scene" aria-hidden="true">
+   <div class="sunc"></div>
+   <div class="arches">
+    <div class="arch"><img src="img/d-terpkoe.jpg" alt=""></div>
+    <div class="arch"><img src="img/d-limepie.jpg" alt=""></div>
+    <div class="arch"><img src="img/d-rendezvous.jpg" alt=""></div>
+   </div>
+  </div>
+ </div>
+ <div class="horizon"></div>
+</section>
+
+<section class="about" id="about">
+ <div class="wrap about-grid">
+  <div class="reveal">
+   <h2>Районная кофейня, в которую хочется возвращаться</h2>
+   <p>Гёг — это тихие залы с деревом, книгами и растениями, летние веранды и бариста, которые помнят ваш заказ.</p>
+   <p>Каждый сезон мы придумываем новые авторские напитки: морковный латте, раф на бородинском хлебе, чаи с облепихой и фейхоа. А классику варим так, чтобы за ней хотелось приходить каждый день.</p>
+   <div class="facts"><div><b>3</b>кофейни в центре</div><div><b>4,9</b>рейтинг в Яндекс Картах</div><div><b>с 8:00</b>открываемся в будни</div></div>
+  </div>
+  <svg class="mark reveal" viewBox="0 0 2098 1588" role="img" aria-label="Логотип Гёг"><use href="#p-sun" fill="#C3BEB6"/><use href="#p-bird" fill="#446C6E"/><use href="#p-let" fill="#446C6E"/></svg>
+ </div>
+</section>
+
+<section id="menu">
+ <div class="wrap">
+  <div class="head"><h2>Меню</h2><p class="lead">Одно меню во всех кофейнях Гёг. Цены в рублях, через «/» — для разных объёмов.</p></div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div id="panel"></div>
+  <p class="milk"><b>Растительное молоко</b> — 60 / 70 / 80 ₽ в любой напиток</p>
+  <p class="legend">КБЖУ на порцию, ориентировочно по техкартам: ккал · белки · жиры · углеводы, через «/» — для разных объёмов.</p>
+  <p class="legend"><span class="tag">новинка</span><span class="tag hit">хит сезона</span><span class="tag bar">выбор бариста</span></p>
+ </div>
+</section>
+
+
+<section class="snack" id="snack">
+ <div class="wrap">
+  <div class="head"><h2>Перекусить</h2><p class="lead">Сытные завтраки и свежая выпечка к кофе.</p></div>
+  <div class="bk" id="bk"></div>
+  <div class="pastry reveal">
+   <div>
+    <h3>Свежая выпечка и десерты</h3>
+    <div class="rng">от 220 до 350 ₽</div>
+    <p>Круассаны — классический и миндальный, канеле, эклеры, тассе с малиной и фисташкой, медовик, птичье молоко. Ассортимент меняется — загляните на витрину.</p>
+   </div>
+   <div class="pgrid" id="pgrid"></div>
+  </div>
+ </div>
+</section>
+
+<section class="candles" id="candles">
+ <div class="wrap">
+  <div class="head"><h2>Свечи ручной работы</h2><p class="lead">Ароматические свечи пионы.кэндлз из соевого воска — продаются в наших кофейнях. Спросите у бариста.</p></div>
+  <div class="pile reveal"><img src="img/candles-pile.jpg" alt="Свечи пионы.кэндлз в жестяных банках" loading="lazy"></div>
+  <div class="cards" id="cards"></div>
+  <div class="toys reveal">
+   <div>
+    <h3>Новогодние свечи-игрушки</h3>
+    <p>Свечи в форме ёлочных игрушек — ёлочка, мухомор, шишка — в подарочной коробке. Хороший подарок себе и близким, забрать можно прямо в кофейне.</p>
+    <div class="tp"><span>набор из 2 шт.</span><b>2000 ₽</b></div>
+   </div>
+   <div class="tgrid">
+    <img src="img/toy-box.jpg" alt="Новогодние свечи в подарочной коробке" loading="lazy">
+    <img src="img/toy-mushroom.jpg" alt="Свеча-мухомор" loading="lazy">
+    <img src="img/toy-tree.jpg" alt="Свеча-ёлочка" loading="lazy">
+    <img src="img/toy-cone.jpg" alt="Свеча-шишка" loading="lazy">
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="places">
+ <div class="wrap">
+  <div class="head"><h2>Три кофейни Гёг</h2><p class="lead">Выбирайте ближайшую — меню и цены везде одинаковые.</p></div>
+  <div class="places" id="plist"></div>
+ </div>
+</section>
+
+<section class="loyal" id="loyalty">
+ <div class="wrap">
+  <div class="loyal-in">
+   <div><h2>Карта гостя</h2><p>Оформите карту лояльности онлайн — это займёт минуту. Новости, сезонные напитки и события — в нашем Telegram-канале.</p></div>
+   <div class="acts"><a class="btn dark" href="https://bp971.quickresto.ru/cpr/registration">Получить карту</a><a class="btn ol" href="https://t.me/gogcoffee">Наш Telegram</a></div>
+   <svg viewBox="0 0 2098 784" aria-hidden="true"><use href="#p-bird" fill="#213738"/></svg>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap foot">
+  <svg viewBox="0 0 2098 1588" aria-label="Гёг"><use href="#p-sun" fill="#C3BEB6" opacity=".4"/><use href="#p-bird" fill="#F3E9DC"/><use href="#p-let" fill="#F3E9DC"/></svg>
+  <span>© Гёг, кофейни · Москва · <a href="https://t.me/gogcoffee">t.me/gogcoffee</a></span>
+ </div>
+</footer>
+
+<div class="lb" id="lb"><button id="lbx" aria-label="Закрыть">×</button><figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure></div>
+
+<script>
+{
+try{const g=id=>document.getElementById(id).getAttribute('d');const l=document.createElement('link');l.rel='icon';l.type='image/svg+xml';l.href='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -650 2098 2098"><rect y="-650" width="2098" height="2098" rx="300" fill="#F3E9DC"/><path fill="#C3BEB6" d="'+g('p-sun')+'"/><path fill="#446C6E" d="'+g('p-bird')+'"/></svg>');document.head.appendChild(l)}catch(e){}
+const N='new',H='hit',B='bar';
+const Y={"walnut": "13009487/2a0000018db1a3a411b8c60428b4db05da12", "norway": "2893106/2a00000193060433a93d0c0a45eb80a6f993", "zemlyanika": "2893106/2a000001930604d736a8f156e54ce31e75db", "espresso": "10022375/2a0000018dc6ab493f545804d3b67046a592", "americano": "13009487/2a0000018dc6aae63c5c82de14000c7c0e62", "capp": "13009487/2a0000018dc6aabf4e31513bc1b43ce21773", "latte": "13009487/2a0000018dc6a9eff16b8d1a41e48c910900", "flat": "13009487/2a0000018dc6aa8ee668298b6aa0d28dd4fa", "filter": "13009487/2a0000018dc6aa4ee2a2cd58bf51403b9859", "v60": "13009487/2a0000018db1a0286c870929200b72ceb4d2", "raf": "1424222/2a000001940321fa862304fd3fd7a50f22e9", "croissant": "2781182/2a00000196630fd285315bd2860451195d96", "canele": "19253181/2a0000019c90954159ceda681cfc5dab7068", "ptiche": "4078836/2a00000196631d0084558d79f7acc4c1fb72", "eclair": "2757887/2a00000196631f17efec0db4021af41042bb", "tasse": "17791271/2a0000019c85aa880d7a29189f0dcd5de09b", "medovik": "19253181/2a0000019c9092a7ca6ff93ade969e5e43de", "tea": "9896919/2a000001905e3aa3d3eedb02ff8696a53cb8", "cocoa": "13488316/2a000001905e399189e5df6cc16720209b74", "matcha": "10324913/2a000001905e387526e327ce644907a6ad27", "syrniki": "10022375/2a0000018dc7208be993dd77d6b3b5ffdb84", "granola": "13009487/2a0000018dc6a46b160087497970712aae1c", "combo": "13009487/2a0000018dc0c3c0aa64818fa9ad3bebbc32"};
+const P=k=>Y[k]?"https://avatars.mds.yandex.net/get-sprav-products/"+Y[k]+"/XXL":"img/"+k+".jpg";
+const KB={"Эспрессо / лунго": [[0], [0], [0], [0]], "Американо": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], "Капучино": [[90, 156, 168], [4.5, 7.8, 8.4], [4.8, 8.3, 9], [7.1, 12.2, 13.2]], "Латте": [[156, 168], [7.8, 8.4], [8.3, 9], [12.2, 13.2]], "Раф": [[276, 347], [6.3, 7.8], [21, 26], [16.4, 21.7]], "Флэт уайт": [[90], [4.5], [4.8], [7.1]], "Фильтр": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], "Воронка V60": [[0], [0], [0], [0]], "Капучино грецкий орех": [[283, 367], [8.6, 9.5], [11.6, 13.5], [36.3, 52.2]], "Капучино норвежский лес": [[218, 246], [7.8, 8.4], [8.3, 9], [27.8, 32.6]], "Латте земляничный пломбир": [[276, 361], [8.1, 8.9], [8.4, 9.1], [40.6, 59.2]], "Латте морковный": [[263, 294], [8.7, 9.5], [12.5, 13.2], [28.6, 34.2]], "Латте пастила": [[234, 260], [8.2, 8.9], [8.4, 9.1], [31.4, 35.7]], "Латте лаймовый пирог": [[187, 232], [1.2, 1.4], [7.8, 8.4], [28.4, 38.2]], "Фильтр сочная слива": [[129, 172], [0.6, 0.8], [0.1, 0.2], [31.6, 42.2]], "Раф бородинский": [[229, 260], [4.1, 4.7], [8.9, 9.3], [32.9, 39.1]], "Раф нежнятина": [[357, 386], [7.5, 7.8], [27.1, 28.1], [21.0, 26.3]], "Чай листовой": [[0, 0], [0, 0], [0, 0], [0, 0]], "Осенний рандеву": [[154, 341], [0.6, 1.4], [1.9, 4.3], [33.6, 74.7]], "Лесной ретрит": [[221, 491], [0.3, 0.7], [0.2, 0.4], [54.7, 121.6]], "Терпкое настроение": [[219, 318], [0.5, 0.8], [0.2, 0.4], [53.8, 78.2]], "Какао": [[191, 257], [10.2, 13.8], [9.8, 13.1], [13.2, 17.5]], "Какао мисо": [[258, 344], [3.7, 5.0], [11.4, 15.0], [34.8, 46.8]], "Матча латте": [[156, 204], [7.8, 10.2], [8.3, 10.9], [12.2, 16]], "Матча изумрудный крем": [[515, 668], [17.5, 22.7], [33.9, 44.5], [34.1, 43.2]], "Флэт уайт буллетпруф": [[235], [2.0], [19.3], [12.7]]};
+
+const MENU={
+ 'Авторский':{vols:'0,3 / 0,4 л',items:[
+  ['Капучино грецкий орех','эспрессо | молоко | цельный грецкий орех','410 / 460',B,'walnut'],
+  ['Капучино норвежский лес','эспрессо | молоко | можжевельник | кардамон','410 / 460',H,'norway'],
+  ['Латте земляничный пломбир','эспрессо | молоко | земляничный соус | свекла','410 / 460',H,'zemlyanika'],
+  ['Латте морковный','куркума | эспрессо | морковное пюре | сливочная пенка','410 / 460',N,'d-carrot'],
+  ['Латте пастила','эспрессо | белёвская пастила | яблоко','410 / 460',N,'d-pastila'],
+  ['Латте лаймовый пирог','эспрессо | кокосовое молоко | лайм','410 / 460',N,'d-limepie'],
+  ['Фильтр сочная слива','пюре сливы | кофе | мёд','410 / 460',N,'d-plum'],
+  ['Раф бородинский','эспрессо | сливки | овсяное молоко | хлеб ржаной','410 / 460',N],
+  ['Раф нежнятина','мята | шоколад | сливки','410 / 460',N],
+  ['Флэт уайт буллетпруф','кунжутная паста | сливочное масло · 0,25 л','400',N,'d-bulletproof']]},
+ 'Классика':{vols:'0,04 / 0,2 / 0,3 / 0,4 л',items:[
+  ['Эспрессо / лунго','','260','','espresso'],['Американо','','270 / 310 / 350','','americano'],['Капучино','','280 / 350 / 390','','capp'],
+  ['Латте','','350 / 390','','latte'],['Раф','','390 / 420','','raf'],['Флэт уайт','','340','','flat'],
+  ['Фильтр','','270 / 310 / 350','','filter'],['Воронка V60','','400','','v60']]},
+ 'Чаи':{vols:'0,4 / 0,8 л',items:[
+  ['Чай листовой','чёрный | зелёный | травяной','290 / 480','','tea'],
+  ['Осенний рандеву','облепиха | груша | розмарин','420 / 660',N,'d-rendezvous'],
+  ['Лесной ретрит','клюква | вишня | мята','420 / 660',N,'d-forest'],
+  ['Терпкое настроение','фейхоа | имбирь | клубника','420 / 660',N,'d-terpkoe']]},
+ 'Какао и матча':{vols:'0,3 / 0,4 л',items:[
+  ['Какао','маршмеллоу или вафля +50 ₽','380 / 420','','cocoa'],
+  ['Какао мисо','мисо-паста | какао-порошок | земляника','410 / 460',N,'d-miso'],
+  ['Осенний пунш','фреш | мускатный орех | вишня','410 / 460',N],
+  ['Матча латте','зелёная | синяя','420 / 450','','matcha'],
+  ['Матча изумрудный крем','белый шоколад | фисташковая паста','410 / 460',N,'d-emerald']]}
+};
+const TAG={new:['новинка',''],hit:['хит сезона','hit'],bar:['выбор бариста','bar']};
+const CANDLES=[
+ ['candle-bakery','стакан 200 г · соевый воск','Тепло старинной пекарни','марципан, бобы тонка, ваниль, гвоздика','1500'],
+ ['candle-pumpkin','жестяная банка 80 мл','Тыквенное крем-брюле','тёплый аромат сладкой выпечки','990'],
+ ['candle-charlotte','жестяная банка 80 мл','Бабушкина шарлотка','яблоко и корица — как пирог из детства','990'],
+ ['candle-cold','жестяная банка 80 мл','Первое похолодание','свежий мандарин','990'],
+ ['candle-frost','жестяная банка 80 мл','Морозная пряжа','пихта и мягкий кашемир','990']];
+const PLACES=[
+ {n:'Яузская',a:'Москва, Яузская ул., 8, стр. 2',m:'м. Таганская',h:'пн–пт 8:00–22:00<br>сб–вс 9:00–22:00',t:'+7 (977) 977-72-31',id:'120961618401'},
+ {n:'Машкова',a:'Москва, ул. Машкова, 21',m:'м. Красные Ворота',h:'пн–пт 8:00–21:00<br>сб–вс 9:00–21:00',t:'+7 (977) 712-88-89',id:'217479634022'},
+ {n:'Бакунинская',a:'Москва, Бакунинская ул., 8',m:'м. Бауманская, 2 минуты пешком',h:'пн–пт 8:00–21:00<br>сб–вс 9:00–21:00',t:'+7 (925) 257-50-55',id:'3480706470',nw:1}];
+
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel'),cats=Object.keys(MENU);
+const fm=v=>String(v).replace('.',',');
+function kb(n){const x=KB[n];if(!x)return '';const j=a=>a.map(fm).join(' / ');return '<div class="kb"><span><b>'+j(x[0])+'</b> ккал</span><span>Б '+j(x[1])+'</span><span>Ж '+j(x[2])+'</span><span>У '+j(x[3])+'</span></div>'}
+function item([n,d,p,t,ph]){
+ const head='<div class="row"><span class="name">'+n+(t?'<span class="tag '+TAG[t][1]+'">'+TAG[t][0]+'</span>':'')+'</span><span class="dots"></span><span class="price">'+p+' ₽</span></div>'+(d?'<div class="desc">'+d+'</div>':'')+kb(n);
+ return ph?'<div class="item"><button class="thumb" data-src="'+P(ph)+'" data-cap="'+n+'" aria-label="Фото: '+n+'"><img src="'+P(ph)+'" alt="" loading="lazy"></button><div>'+head+'</div></div>':'<div class="item np"><div>'+head+'</div></div>';
+}
+function show(i){
+ [...tabs.children].forEach((b,j)=>{b.classList.toggle('on',i===j);b.setAttribute('aria-selected',i===j)});
+ const m=MENU[cats[i]];
+ panel.innerHTML='<div class="vols">Объём: '+m.vols+'</div><div class="items">'+m.items.map(item).join('')+'</div>';
+ panel.querySelectorAll('.thumb').forEach(b=>b.onclick=()=>openLb(b.dataset.src,b.dataset.cap));
+}
+tabs.innerHTML=cats.map(c=>'<button class="tab" role="tab">'+c+'</button>').join('');
+[...tabs.children].forEach((b,i)=>b.onclick=()=>show(i));
+show(0);
+
+const BK=[
+ ['syrniki','Сырники','480','творожные, на выбор:',['со сгущёнкой, сметаной и маком','с малиновым соусом, сметаной и миндалём','с облепиховым соусом, сметаной и сублимированной земляникой']],
+ ['granola','Гранола','380','овсянка печёная, греческий йогурт, малиновый или облепиховый соус',[]],
+ ['combo','Комбо-завтрак','500','всё для хорошего утра в одном наборе:',['круассан с джемом и маслом','фильтр-кофе','апельсиновый фреш']]];
+document.getElementById('bk').innerHTML=BK.map(([k,n,p,d,l])=>'<article class="bkc reveal"><button class="ph" data-src="'+P(k)+'" data-cap="'+n+'" aria-label="Фото: '+n+'"><img src="'+P(k)+'" alt="'+n+'" loading="lazy"></button><div class="b"><h3>'+n+'<span>'+p+' ₽</span></h3><p>'+d+'</p>'+(l.length?'<ul>'+l.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+'</div></article>').join('');
+const PS=[['croissant','Круассаны'],['canele','Канеле'],['eclair','Эклеры'],['tasse','Тассе'],['medovik','Медовик'],['ptiche','Птичье молоко']];
+document.getElementById("pgrid").innerHTML=PS.map(([k,n])=>'<button data-src="'+P(k)+'" data-cap="'+n+'" aria-label="Фото: '+n+'"><img src="'+P(k)+'" alt="'+n+'" loading="lazy"><span>'+n+'</span></button>').join('');
+document.querySelectorAll('#bk .ph,#pgrid button').forEach(b=>b.onclick=()=>openLb(b.dataset.src,b.dataset.cap));
+document.getElementById('cards').innerHTML=CANDLES.map(([f,fmt,n,d,p])=>'<div class="card reveal"><img src="img/'+f+'.jpg" alt="Свеча «'+n+'»" loading="lazy"><div class="b"><div class="fmt">'+fmt+'</div><h3>'+n+'</h3><p>'+d+'</p><div class="pr">'+p+' ₽</div></div></div>').join('');
+
+document.getElementById('plist').innerHTML=PLACES.map(p=>{const tel=p.t.replace(/[^\d+]/g,'');const map='https://yandex.ru/maps/org/gyog/'+p.id+'/';
+ return '<article class="place reveal"><div class="top"><h3>'+p.n+'</h3><div class="m">'+p.m+'</div>'+(p.nw?'<span class="new">новая</span>':'')+'<i></i></div><dl class="bd"><div><dt>Адрес</dt><dd>'+p.a+'</dd></div><div><dt>Часы работы</dt><dd>'+p.h+'</dd></div><div><dt>Телефон</dt><dd><a href="tel:'+tel+'">'+p.t+'</a></dd></div><div class="acts"><a class="btn dark" href="'+map+'">Маршрут</a><a class="btn ol" href="tel:'+tel+'">Позвонить</a></div></dl></article>'}).join('');
+
+const lb=document.getElementById('lb'),li=document.getElementById('lbimg'),lc=document.getElementById('lbcap');
+function openLb(s,c){li.src=s;li.alt=c;lc.textContent=c;lb.classList.add('on')}
+document.getElementById('lbx').onclick=()=>lb.classList.remove('on');
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('on')};
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+const links=document.getElementById('links'),bg=document.getElementById('burger');
+bg.onclick=()=>{const o=links.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
+
+try{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}catch(e){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}
+}
+</script>
+</body>
+</html>
